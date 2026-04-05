@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-05 14:27:42.813886",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "part",
+  "demand_qty",
+  "current_stock",
+  "column_break_umgy",
+  "required_qty",
+  "capacity_per_shift",
+  "required_shifts",
+  "bottleneck_stage",
+  "section_break_pzex",
+  "part_production_plan_shift_detail"
+ ],
+ "fields": [
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "part",
+   "fieldtype": "Link",
+   "label": "Part",
+   "options": "Parts Master"
+  },
+  {
+   "fieldname": "demand_qty",
+   "fieldtype": "Float",
+   "label": "Demand Qty"
+  },
+  {
+   "fieldname": "current_stock",
+   "fieldtype": "Float",
+   "label": "Current Stock"
+  },
+  {
+   "fieldname": "column_break_umgy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "required_qty",
+   "fieldtype": "Float",
+   "label": "Required Qty"
+  },
+  {
+   "fieldname": "capacity_per_shift",
+   "fieldtype": "Float",
+   "label": "Capacity per Shift"
+  },
+  {
+   "fieldname": "required_shifts",
+   "fieldtype": "Float",
+   "label": "Required Shifts"
+  },
+  {
+   "fieldname": "bottleneck_stage",
+   "fieldtype": "Data",
+   "label": "Bottleneck Stage"
+  },
+  {
+   "fieldname": "section_break_pzex",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "part_production_plan_shift_detail",
+   "fieldtype": "Table",
+   "label": "Part Production Plan Shift Detail",
+   "options": "Part Production Plan Shift Detail"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-05 14:33:57.558015",
+ "modified_by": "Administrator",
+ "module": "Production Planning",
+ "name": "Part Production Plan",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-05 14:13:31.397154",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "shift",
+  "division",
+  "column_break_uqmc",
+  "requirement_qty",
+  "produced_qty",
+  "dispatched_qty",
+  "section_break_wosp",
+  "backlog_qty",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "shift",
+   "fieldtype": "Select",
+   "label": "Shift",
+   "options": "Shift 1\nShift 2\nShift 3"
+  },
+  {
+   "fieldname": "division",
+   "fieldtype": "Select",
+   "label": "DIvision",
+   "options": "\nFoundry\nMachining\nDispatch"
+  },
+  {
+   "fieldname": "column_break_uqmc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "requirement_qty",
+   "fieldtype": "Float",
+   "label": "Requirement"
+  },
+  {
+   "fieldname": "produced_qty",
+   "fieldtype": "Float",
+   "label": "Produced Qty"
+  },
+  {
+   "fieldname": "dispatched_qty",
+   "fieldtype": "Float",
+   "label": "Dispatch Qty"
+  },
+  {
+   "fieldname": "section_break_wosp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "backlog_qty",
+   "fieldtype": "Float",
+   "label": "Backlog",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nSubmitted"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-05 14:17:17.978374",
+ "modified_by": "Administrator",
+ "module": "Production Monitoring",
+ "name": "Production Daily Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

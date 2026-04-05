@@ -1,0 +1,247 @@
+/* ============================= */
+/* PRAVIN ENGINEERING THEME */
+/* ============================= */
+
+:root {
+  --primary: #F15A24;
+  --primary-hover: #D94E1F;
+  --dark: #0F0F0F;
+  --light-bg: #FFF2EC;
+}
+
+/* ============================= */
+/* RESET BAD ORANGE USAGE */
+/* ============================= */
+a {
+  color: inherit !important;
+}
+
+/* ============================= */
+/* PRIMARY BUTTONS */
+/* ============================= */
+.btn-primary,
+.page-actions .btn-primary {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+  border-radius: 8px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+/* ============================= */
+/* SECONDARY BUTTON */
+/* ============================= */
+.btn-default {
+  border-radius: 8px;
+}
+
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+.navbar,
+.navbar-default {
+  background: var(--dark) !important;
+}
+
+.navbar a {
+  color: #ffffff !important;
+}
+
+/* ============================= */
+/* SIDEBAR */
+/* ============================= */
+.layout-side-section {
+  background: var(--dark) !important;
+}
+
+.layout-side-section .nav-link {
+  color: #cccccc !important;
+}
+
+.layout-side-section .nav-link:hover {
+  color: #ffffff !important;
+}
+
+.layout-side-section .nav-link.active {
+  color: #ffffff !important;
+  border-left: 4px solid var(--primary);
+  background: #1a1a1a !important;
+}
+
+/* ============================= */
+/* LINKS (CONTROLLED ORANGE) */
+/* ============================= */
+.text-primary,
+.link-primary {
+  color: var(--primary) !important;
+}
+
+/* ============================= */
+/* INPUT FIELDS */
+/* ============================= */
+input:focus,
+textarea:focus,
+.form-control:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 1px var(--primary) !important;
+}
+
+/* ============================= */
+/* CHECKBOX / RADIO */
+/* ============================= */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  accent-color: var(--primary) !important;
+}
+
+/* ============================= */
+/* CARDS */
+/* ============================= */
+.widget,
+.card {
+  border-radius: 12px !important;
+  transition: all 0.2s ease;
+}
+
+.widget:hover,
+.card:hover {
+  border-color: var(--primary) !important;
+  box-shadow: 0px 6px 18px rgba(241, 90, 36, 0.2);
+}
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+.grid-heading-row {
+  background: var(--dark) !important;
+  color: #fff !important;
+}
+
+.grid-row:hover {
+  background: var(--light-bg) !important;
+}
+
+/* ============================= */
+/* BADGES */
+/* ============================= */
+.badge-primary {
+  background: var(--primary) !important;
+}
+
+/* ============================= */
+/* PROGRESS BAR */
+/* ============================= */
+.progress-bar {
+  background: var(--primary) !important;
+}
+
+/* ============================= */
+/* SCROLLBAR (OPTIONAL COOL UI) */
+/* ============================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+/* ============================= */
+/* PAGE HEADER */
+/* ============================= */
+.page-head {
+  border-bottom: 1px solid #eee;
+}
+
+/* ============================= */
+/* HOVER MICRO INTERACTION */
+/* ============================= */
+.btn,
+.card,
+.widget {
+  transition: all 0.2s ease-in-out;
+}
+/* ============================= */
+/* AWESOME BAR FULL FIX */
+/* ============================= */
+
+/* Dropdown container */
+.awesomplete ul {
+  background: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* ALL items (fix invisible text) */
+.awesomplete li {
+  color: #000000 !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Hover */
+.awesomplete li:hover {
+  background: #FFF2EC !important;
+  color: #000 !important;
+}
+
+/* Selected */
+.awesomplete li[aria-selected="true"] {
+  background: #FFF2EC !important;
+  color: #F15A24 !important;
+  border-left: 4px solid #F15A24;
+}
+
+/* Highlight match */
+.awesomplete mark {
+  background: transparent !important;
+  color: #F15A24 !important;
+}
+
+/* CRITICAL: fix hidden spans */
+.awesomplete li span,
+.awesomplete li a {
+  color: inherit !important;
+  display: inline !important;
+}
+/* ============================= */
+/* PAGE HEADER (TOP STRIP) */
+/* ============================= */
+
+.page-head {
+  background: #FFF2EC !important;   /* soft orange */
+  border-bottom: 2px solid #F15A24 !important;
+}
+
+/* Title "Home" */
+.page-head .title-text {
+  color: #F15A24 !important;
+  font-weight: 600;
+}
+/* Splash animations */
+
+@keyframes loading {
+  0% { width: 0; }
+  100% { width: 120px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Hide frappe default loader */
+#freeze,
+.freeze,
+.loading-indicator,
+.spinner-border {
+  display: none !important;
+}
+.navbar-brand img {
+    content: url("/assets/pe_erp/images/unnamed.png");
+    height: 40px;
+}

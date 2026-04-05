@@ -20,6 +20,11 @@ app_license = "mit"
 # 		"has_permission": "pe_erp.api.permission.has_app_permission"
 # 	}
 # ]
+app_include_css = "/assets/pe_erp/css/pravin.css"
+# app_include_js = "/assets/pe_erp/js/splash.js"
+website_context = {
+    "splash_image": "/assets/pe_erp/images/unnamed.png"
+}
 
 # Includes in <head>
 # ------------------

@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-05 14:18:01.824863",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "part",
+  "foundry_cycle_time",
+  "column_break_mynl",
+  "machining_cycle_time",
+  "dispatch_cycle_time",
+  "total_cycle_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "part",
+   "fieldtype": "Link",
+   "label": "Part ",
+   "options": "Parts Master"
+  },
+  {
+   "fieldname": "foundry_cycle_time",
+   "fieldtype": "Float",
+   "label": "Foundry CT (min)"
+  },
+  {
+   "fieldname": "machining_cycle_time",
+   "fieldtype": "Float",
+   "label": "Machining CT"
+  },
+  {
+   "fieldname": "dispatch_cycle_time",
+   "fieldtype": "Float",
+   "label": "Dispatch CT"
+  },
+  {
+   "fieldname": "total_cycle_time",
+   "fieldtype": "Float",
+   "label": "Total CT"
+  },
+  {
+   "fieldname": "column_break_mynl",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-05 14:20:17.169824",
+ "modified_by": "Administrator",
+ "module": "Production Planning",
+ "name": "Item Production Master",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
