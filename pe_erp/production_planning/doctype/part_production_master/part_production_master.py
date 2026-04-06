@@ -1,6 +1,5 @@
 # Copyright (c) 2026, Shaili Parikh and contributors
 # For license information, please see license.txt
-
 import frappe
 from frappe.model.document import Document
 
@@ -8,64 +7,61 @@ from frappe.model.document import Document
 class PartProductionMaster(Document):
 
     def validate(self):
-        self.validate_part()
-        self.validate_cycle_times()
-        self.calculate_total_cycle_time()
-        self.prevent_duplicate()
+        self.fetch_part_name()
+        self.calculate_operations()
 
-    # 🔷 Validate Part
-    def validate_part(self):
-        if not self.part:
-            frappe.throw("Part is mandatory")
+    # 🔷 Fetch Part Name
+    def fetch_part_name(self):
+        if self.part:
+            self.part_name = frappe.db.get_value(
+                "Parts Master",
+                self.part,
+                "part_name"
+            )
 
-        part_doc = frappe.get_doc("Parts Master", self.part)
+    # 🔷 Main Logic
+    def calculate_operations(self):
 
-        if not part_doc.is_active:
-            frappe.throw(f"Part {self.part} is inactive")
+        available_minutes = 8 * 60  # 1 shift (you can make dynamic later)
 
-    # 🔷 Validate Cycle Times
-    def validate_cycle_times(self):
-        fields = [
-            ("foundry_cycle_time", "Foundry Cycle Time"),
-            ("machining_cycle_time", "Machining Cycle Time"),
-            ("dispatch_cycle_time", "Dispatch Cycle Time"),
-        ]
+        min_output = None
+        bottleneck_op = None
 
-        for field, label in fields:
-            value = self.get(field) or 0
+        for row in self.operations:
 
-            if value < 0:
-                frappe.throw(f"{label} cannot be negative")
+            # Reset defaults
+            row.output = 0
+            row.is_bottleneck = 0
 
-    # 🔷 Calculate Total Cycle Time + Bottleneck
-    def calculate_total_cycle_time(self):
-        foundry = self.foundry_cycle_time or 0
-        machining = self.machining_cycle_time or 0
-        dispatch = self.dispatch_cycle_time or 0
+            if not row.cycle_time or row.cycle_time <= 0:
+                continue
 
-        self.total_cycle_time = foundry + machining + dispatch
+            # 🔥 Efficiency (default 100%)
+            efficiency = (row.efficiency or 100) / 100
 
-        if self.total_cycle_time <= 0:
-            frappe.throw("Total Cycle Time must be greater than 0")
+            # 🔥 Calculate output
+            effective_minutes = available_minutes * efficiency
+            output = effective_minutes / row.cycle_time
 
-        # 🔥 Bottleneck Detection
-        stages = {
-            "Foundry": foundry,
-            "Machining": machining,
-            "Dispatch": dispatch
-        }
+            row.output = round(output, 2)
 
-        self.bottleneck_stage = max(stages, key=stages.get)
+            # 🔥 Find bottleneck (minimum output)
+            if min_output is None or output < min_output:
+                min_output = output
+                bottleneck_op = row.operation
 
-    # 🔷 Prevent Duplicate Entry
-    def prevent_duplicate(self):
-        existing = frappe.db.exists(
-            "Part Production Master",
-            {
-                "part": self.part,
-                "name": ["!=", self.name]
-            }
-        )
+        # 🔥 Assign parent values
+        if min_output is not None:
+            self.capacityshift = round(min_output, 2)
+            self.bottleneck_operation = bottleneck_op
+        else:
+            self.capacityshift = 0
+            self.bottleneck_operation = None
 
-        if existing:
-            frappe.throw(f"Production Master already exists for Part: {self.part}")
+        # 🔥 Mark bottleneck row
+        for row in self.operations:
+            if row.operation == bottleneck_op:
+                row.is_bottleneck = 1
+
+        # 🔥 Total operations
+        self.total_operations = len(self.operations)

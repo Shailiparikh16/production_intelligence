@@ -9,12 +9,14 @@
   "demand_qty",
   "column_break_umgy",
   "part",
-  "current_stock",
   "section_break_dotd",
-  "required_qty",
-  "capacity_per_shift",
-  "required_shifts",
+  "current_stock",
   "column_break_stkb",
+  "required_qty",
+  "section_break_nclr",
+  "required_shifts",
+  "capacity_per_shift",
+  "column_break_xerd",
   "bottleneck_stage",
   "section_break_pzex",
   "part_production_plan_shift_detail"
@@ -39,7 +41,8 @@
   {
    "fieldname": "current_stock",
    "fieldtype": "Float",
-   "label": "Current Stock"
+   "label": "Current Stock",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_umgy",
@@ -48,22 +51,26 @@
   {
    "fieldname": "required_qty",
    "fieldtype": "Float",
-   "label": "Required Qty"
+   "label": "Required Qty",
+   "read_only": 1
   },
   {
    "fieldname": "capacity_per_shift",
    "fieldtype": "Float",
-   "label": "Capacity per Shift"
+   "label": "Capacity per Shift",
+   "read_only": 1
   },
   {
    "fieldname": "required_shifts",
    "fieldtype": "Float",
-   "label": "Required Shifts"
+   "label": "Required Shifts",
+   "read_only": 1
   },
   {
    "fieldname": "bottleneck_stage",
    "fieldtype": "Data",
-   "label": "Bottleneck Stage"
+   "label": "Bottleneck Stage",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_pzex",
@@ -82,12 +89,20 @@
   {
    "fieldname": "column_break_stkb",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_nclr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_xerd",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-06 09:36:17.699517",
+ "modified": "2026-04-06 15:46:05.466708",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Part Production Plan",

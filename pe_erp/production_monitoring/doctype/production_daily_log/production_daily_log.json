@@ -5,16 +5,19 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "date",
-  "shift",
+  "production_daily_log_section",
+  "part",
+  "production_plan",
   "division",
   "column_break_uqmc",
-  "requirement_qty",
-  "produced_qty",
-  "dispatched_qty",
+  "date",
+  "shift",
   "section_break_wosp",
-  "backlog_qty",
-  "status"
+  "planned_qty",
+  "dispatched_qty",
+  "column_break_igth",
+  "produced_qty",
+  "backlog_qty"
  ],
  "fields": [
   {
@@ -24,9 +27,9 @@
   },
   {
    "fieldname": "shift",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Shift",
-   "options": "Shift 1\nShift 2\nShift 3"
+   "options": "Shift Configuration"
   },
   {
    "fieldname": "division",
@@ -39,11 +42,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "requirement_qty",
-   "fieldtype": "Float",
-   "label": "Requirement"
-  },
-  {
    "fieldname": "produced_qty",
    "fieldtype": "Float",
    "label": "Produced Qty"
@@ -51,29 +49,49 @@
   {
    "fieldname": "dispatched_qty",
    "fieldtype": "Float",
-   "label": "Dispatch Qty"
+   "label": "Dispatched Qty"
   },
   {
    "fieldname": "section_break_wosp",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Quantities"
+  },
+  {
+   "fieldname": "production_daily_log_section",
+   "fieldtype": "Section Break",
+   "label": "Production Daily Log"
+  },
+  {
+   "fieldname": "production_plan",
+   "fieldtype": "Link",
+   "label": "Production Plan",
+   "options": "Part Production Plan"
+  },
+  {
+   "fieldname": "planned_qty",
+   "fieldtype": "Float",
+   "label": "Planned Qty"
+  },
+  {
+   "fieldname": "column_break_igth",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "backlog_qty",
    "fieldtype": "Float",
-   "label": "Backlog",
-   "read_only": 1
+   "label": "Backlog Qty"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Draft\nSubmitted"
+   "fieldname": "part",
+   "fieldtype": "Link",
+   "label": "Part",
+   "options": "Parts Master"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-05 14:17:17.978374",
+ "modified": "2026-04-06 16:03:03.513970",
  "modified_by": "Administrator",
  "module": "Production Monitoring",
  "name": "Production Daily Log",

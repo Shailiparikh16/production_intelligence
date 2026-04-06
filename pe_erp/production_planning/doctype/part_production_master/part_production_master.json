@@ -7,13 +7,16 @@
  "engine": "InnoDB",
  "field_order": [
   "part",
-  "foundry_cycle_time",
+  "part_name",
   "column_break_mynl",
-  "machining_cycle_time",
-  "dispatch_cycle_time",
+  "is_active",
+  "section_break_qupt",
+  "total_operations",
+  "capacityshift",
+  "column_break_aytt",
+  "bottleneck_operation",
   "section_break_ifes",
-  "bottleneck_stage",
-  "total_cycle_time"
+  "operations"
  ],
  "fields": [
   {
@@ -24,45 +27,58 @@
    "unique": 1
   },
   {
-   "fieldname": "foundry_cycle_time",
-   "fieldtype": "Float",
-   "label": "Foundry CT (min)"
-  },
-  {
-   "fieldname": "machining_cycle_time",
-   "fieldtype": "Float",
-   "label": "Machining CT"
-  },
-  {
-   "fieldname": "dispatch_cycle_time",
-   "fieldtype": "Float",
-   "label": "Dispatch CT"
-  },
-  {
-   "fieldname": "total_cycle_time",
-   "fieldtype": "Float",
-   "label": "Total CT",
-   "read_only": 1
-  },
-  {
    "fieldname": "column_break_mynl",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "bottleneck_stage",
-   "fieldtype": "Data",
-   "label": "Bottleneck Stage",
-   "read_only": 1
-  },
-  {
    "fieldname": "section_break_ifes",
    "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "section_break_qupt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_operations",
+   "fieldtype": "Int",
+   "label": "Total Operations"
+  },
+  {
+   "fieldname": "capacityshift",
+   "fieldtype": "Float",
+   "label": "Capacity/Shift"
+  },
+  {
+   "fieldname": "column_break_aytt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bottleneck_operation",
+   "fieldtype": "Data",
+   "label": "Bottleneck"
+  },
+  {
+   "fieldname": "part_name",
+   "fieldtype": "Data",
+   "label": "Part Name"
+  },
+  {
+   "fieldname": "operations",
+   "fieldtype": "Table",
+   "label": "Operations",
+   "options": "Part Operations"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-06 09:34:23.372695",
+ "modified": "2026-04-06 14:59:48.857821",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Part Production Master",
