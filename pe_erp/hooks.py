@@ -22,10 +22,18 @@ app_license = "mit"
 # ]
 app_include_css = "/assets/pe_erp/css/pravin.css"
 # app_include_js = "/assets/pe_erp/js/splash.js"
+app_include_js = "/assets/pe_erp/js/custom_navbar.js"
 website_context = {
     "splash_image": "/assets/pe_erp/images/unnamed.png"
 }
-fixtures = ["Workspace"]
+fixtures = [
+    {
+        "doctype": "Workspace",
+        "filters": [
+            ["name", "=", "PE ERP"] 
+        ]
+    }
+]
 # Includes in <head>
 # ------------------
 
