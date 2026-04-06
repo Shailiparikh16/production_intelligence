@@ -25,7 +25,7 @@ app_include_css = "/assets/pe_erp/css/pravin.css"
 website_context = {
     "splash_image": "/assets/pe_erp/images/unnamed.png"
 }
-
+fixtures = ["Workspace"]
 # Includes in <head>
 # ------------------
 
