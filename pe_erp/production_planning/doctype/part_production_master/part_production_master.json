@@ -8,10 +8,11 @@
  "field_order": [
   "part",
   "foundry_cycle_time",
-  "bottleneck_stage",
   "column_break_mynl",
   "machining_cycle_time",
   "dispatch_cycle_time",
+  "section_break_ifes",
+  "bottleneck_stage",
   "total_cycle_time"
  ],
  "fields": [
@@ -50,13 +51,18 @@
   {
    "fieldname": "bottleneck_stage",
    "fieldtype": "Data",
-   "label": "Bottleneck Stage"
+   "label": "Bottleneck Stage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ifes",
+   "fieldtype": "Section Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-05 15:56:12.185401",
+ "modified": "2026-04-06 09:34:23.372695",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Part Production Master",
