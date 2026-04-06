@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class ItemProductionMaster(Document):
+class DemandParts(Document):
 	pass

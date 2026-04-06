@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:shift_name",
  "creation": "2026-04-05 14:21:07.530209",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -13,7 +14,8 @@
   {
    "fieldname": "shift_name",
    "fieldtype": "Data",
-   "label": "Shift Name"
+   "label": "Shift Name",
+   "unique": 1
   },
   {
    "fieldname": "working_hours",
@@ -29,10 +31,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-05 14:22:22.082495",
+ "modified": "2026-04-05 15:59:34.818544",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Shift Configuration",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

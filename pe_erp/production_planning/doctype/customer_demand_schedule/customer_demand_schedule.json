@@ -25,13 +25,13 @@
    "fieldname": "demand_items",
    "fieldtype": "Table",
    "label": "Demand Items",
-   "options": "Demand Items"
+   "options": "Demand Parts"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-05 14:25:55.937240",
+ "modified": "2026-04-05 15:31:49.301499",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Customer Demand Schedule",

@@ -31,7 +31,7 @@
  "modified": "2026-04-05 14:24:04.296008",
  "modified_by": "Administrator",
  "module": "Production Planning",
- "name": "Demand Items",
+ "name": "Demand Parts",
  "owner": "Administrator",
  "permissions": [],
  "row_format": "Dynamic",

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "Auto Name = field:part_code",
+ "autoname": "field:part_code",
  "creation": "2026-04-05 14:07:56.368875",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -21,7 +21,8 @@
   {
    "fieldname": "part_code",
    "fieldtype": "Data",
-   "label": "Part Code"
+   "label": "Part Code",
+   "unique": 1
   },
   {
    "fieldname": "part_name",
@@ -75,7 +76,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-05 14:12:47.317526",
+ "modified": "2026-04-05 15:50:06.342612",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Parts Master",

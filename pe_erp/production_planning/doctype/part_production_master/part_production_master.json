@@ -1,12 +1,14 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:part",
  "creation": "2026-04-05 14:18:01.824863",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "part",
   "foundry_cycle_time",
+  "bottleneck_stage",
   "column_break_mynl",
   "machining_cycle_time",
   "dispatch_cycle_time",
@@ -17,7 +19,8 @@
    "fieldname": "part",
    "fieldtype": "Link",
    "label": "Part ",
-   "options": "Parts Master"
+   "options": "Parts Master",
+   "unique": 1
   },
   {
    "fieldname": "foundry_cycle_time",
@@ -37,20 +40,27 @@
   {
    "fieldname": "total_cycle_time",
    "fieldtype": "Float",
-   "label": "Total CT"
+   "label": "Total CT",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_mynl",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bottleneck_stage",
+   "fieldtype": "Data",
+   "label": "Bottleneck Stage"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-05 14:20:17.169824",
+ "modified": "2026-04-05 15:56:12.185401",
  "modified_by": "Administrator",
  "module": "Production Planning",
- "name": "Item Production Master",
+ "name": "Part Production Master",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
