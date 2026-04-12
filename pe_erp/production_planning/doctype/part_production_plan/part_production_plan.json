@@ -80,7 +80,8 @@
    "fieldname": "part_production_plan_shift_detail",
    "fieldtype": "Table",
    "label": "Part Production Plan Shift Detail",
-   "options": "Part Production Plan Shift Detail"
+   "options": "Part Production Plan Shift Detail",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_dotd",
@@ -102,7 +103,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-06 15:46:05.466708",
+ "modified": "2026-04-12 17:59:43.671205",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Part Production Plan",
