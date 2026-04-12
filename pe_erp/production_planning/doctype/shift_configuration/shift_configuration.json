@@ -7,8 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "shift_name",
-  "working_hours",
-  "efficiency"
+  "working_hours"
  ],
  "fields": [
   {
@@ -21,17 +20,12 @@
    "fieldname": "working_hours",
    "fieldtype": "Float",
    "label": "Working Hours"
-  },
-  {
-   "fieldname": "efficiency",
-   "fieldtype": "Percent",
-   "label": "Efficiency (%)"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-05 15:59:34.818544",
+ "modified": "2026-04-12 15:38:51.704442",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Shift Configuration",

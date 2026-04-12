@@ -1,15 +1,33 @@
-# Copyright (c) 2026, Shaili Parikh
-# For license information, please see license.txt
-
+# # Copyright (c) 2026, Shaili Parikh
+# # For license information, please see license.txt
 import frappe
 from frappe.model.document import Document
+from frappe.utils import formatdate
+import re
 
 
 class PartProductionPlan(Document):
 
+    def autoname(self):
+
+        if not self.part or not self.date:
+            frappe.throw("Part and Date are required for naming")
+
+        # 🔷 Clean part name/code
+        part_clean = re.sub(r'[^A-Za-z0-9]', '', self.part).upper()
+
+        # 🔷 Format date
+        date_str = formatdate(self.date, "yyyyMMdd")
+
+        # 🔷 Final Name
+        self.name = frappe.model.naming.make_autoname(
+            f"PPP-{part_clean}-{date_str}-.###"
+        )
+
     def validate(self):
         self.validate_inputs()
-        self.fetch_inputs()  # 🔥 unified call
+        self.fetch_demand()
+        self.fetch_current_stock()
         self.fetch_capacity_from_master()
         self.calculate_required_qty()
         self.calculate_required_shifts()
@@ -20,19 +38,8 @@ class PartProductionPlan(Document):
         if not self.part:
             frappe.throw("Part is required")
 
-        if (self.demand_qty or 0) < 0:
-            frappe.throw("Demand Qty cannot be negative")
-
-        if (self.current_stock or 0) < 0:
-            frappe.throw("Current Stock cannot be negative")
-
-    # 🔥 UNIFIED FETCH (Demand + Stock)
-    def fetch_inputs(self):
-
-        if not self.part or not self.date:
-            return
-
-        # 🔷 Demand
+    # 🔷 Fetch Demand
+    def fetch_demand(self):
         demand = frappe.db.sql("""
             SELECT SUM(dp.quantity)
             FROM `tabCustomer Demand Schedule` cds
@@ -45,7 +52,8 @@ class PartProductionPlan(Document):
 
         self.demand_qty = demand[0][0] if demand and demand[0][0] else 0
 
-        # 🔷 Stock
+    # 🔷 Fetch Stock
+    def fetch_current_stock(self):
         stock = frappe.db.get_value(
             "Part Inventory",
             {"part": self.part},
@@ -54,24 +62,19 @@ class PartProductionPlan(Document):
 
         self.current_stock = stock or 0
 
-    # 🔷 Fetch Capacity from Master
+    # 🔥 NEW: Fetch Capacity from Master
     def fetch_capacity_from_master(self):
 
-        master = frappe.db.get_value(
+        master = frappe.get_doc(
             "Part Production Master",
-            {"part": self.part},
-            ["capacityshift", "bottleneck_operation"],
-            as_dict=True
+            {"part": self.part}
         )
 
-        if not master:
-            frappe.throw(f"No Production Master found for Part {self.part}")
+        if not master.capacityshift:
+            frappe.throw("Capacity/Shift not defined in Part Production Master")
 
-        self.capacity_per_shift = master.capacityshift or 0
+        self.capacity_per_shift = master.capacityshift
         self.bottleneck_stage = master.bottleneck_operation
-
-        if not self.capacity_per_shift:
-            frappe.throw("Capacity not defined in Part Production Master")
 
     # 🔷 Required Qty
     def calculate_required_qty(self):
@@ -82,6 +85,7 @@ class PartProductionPlan(Document):
 
     # 🔷 Required Shifts
     def calculate_required_shifts(self):
+
         if self.capacity_per_shift:
             self.required_shifts = round(
                 self.required_qty / self.capacity_per_shift, 2
@@ -89,13 +93,15 @@ class PartProductionPlan(Document):
         else:
             self.required_shifts = 0
 
-    # 🔷 Generate Shift Plan (Optimized)
+    # 🔥 FINAL: Generate Shift Plan
     def generate_shift_plan(self):
 
         self.part_production_plan_shift_detail = []
 
         if not self.required_qty or not self.capacity_per_shift:
             return
+
+        remaining_qty = self.required_qty
 
         shifts = frappe.get_all(
             "Shift Configuration",
@@ -106,24 +112,10 @@ class PartProductionPlan(Document):
         if not shifts:
             frappe.throw("No Shift Configuration found")
 
-        remaining_qty = self.required_qty
-
-        for shift in shifts:
-            if remaining_qty <= 0:
-                break
-
-            qty = min(self.capacity_per_shift, remaining_qty)
-
-            self.append("part_production_plan_shift_detail", {
-                "shift": shift.name,
-                "planned_qty": round(qty, 2)
-            })
-
-            remaining_qty -= qty
-
-        # 🔥 If still remaining → loop again
         i = 0
+
         while remaining_qty > 0:
+
             shift = shifts[i % len(shifts)]
 
             qty = min(self.capacity_per_shift, remaining_qty)

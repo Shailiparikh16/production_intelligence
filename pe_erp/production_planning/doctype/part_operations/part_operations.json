@@ -35,13 +35,11 @@
    "default": "0",
    "fieldname": "is_bottleneck",
    "fieldtype": "Check",
-   "in_list_view": 1,
    "label": "Bottleneck"
   },
   {
    "fieldname": "efficiency",
    "fieldtype": "Percent",
-   "in_list_view": 1,
    "label": "Efficiency"
   }
  ],
@@ -49,7 +47,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-04-06 15:39:35.475740",
+ "modified": "2026-04-12 17:13:32.534341",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Part Operations",
