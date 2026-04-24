@@ -14,7 +14,6 @@
   "total_operations",
   "capacityshift",
   "column_break_aytt",
-  "bottleneck_operation",
   "total_time_to_produce",
   "section_break_ifes",
   "operations"
@@ -52,20 +51,8 @@
    "read_only": 1
   },
   {
-   "fieldname": "capacityshift",
-   "fieldtype": "Float",
-   "label": "Capacity/Shift",
-   "read_only": 1
-  },
-  {
    "fieldname": "column_break_aytt",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "bottleneck_operation",
-   "fieldtype": "Data",
-   "label": "Bottleneck",
-   "read_only": 1
   },
   {
    "fieldname": "part_name",
@@ -81,13 +68,20 @@
   {
    "fieldname": "total_time_to_produce",
    "fieldtype": "Data",
-   "label": "Total Time To Produce"
+   "label": "Total Time To Produce",
+   "read_only": 1
+  },
+  {
+   "fieldname": "capacityshift",
+   "fieldtype": "Int",
+   "label": "Production per Shift",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-12 17:17:53.765626",
+ "modified": "2026-04-14 11:19:53.906552",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Part Production Master",

@@ -18,7 +18,7 @@
   },
   {
    "fieldname": "planned_qty",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Planned Quantity"
   }

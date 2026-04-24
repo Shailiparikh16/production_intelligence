@@ -17,7 +17,6 @@
   "required_shifts",
   "capacity_per_shift",
   "column_break_xerd",
-  "bottleneck_stage",
   "section_break_pzex",
   "part_production_plan_shift_detail"
  ],
@@ -56,20 +55,14 @@
   },
   {
    "fieldname": "capacity_per_shift",
-   "fieldtype": "Float",
-   "label": "Capacity per Shift",
+   "fieldtype": "Int",
+   "label": "Production per Shift",
    "read_only": 1
   },
   {
    "fieldname": "required_shifts",
    "fieldtype": "Float",
    "label": "Required Shifts",
-   "read_only": 1
-  },
-  {
-   "fieldname": "bottleneck_stage",
-   "fieldtype": "Data",
-   "label": "Bottleneck Stage",
    "read_only": 1
   },
   {
@@ -103,7 +96,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-12 17:59:43.671205",
+ "modified": "2026-04-13 18:30:16.469181",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Part Production Plan",

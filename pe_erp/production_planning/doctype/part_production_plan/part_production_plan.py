@@ -4,6 +4,8 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import formatdate
 import re
+import math
+
 
 
 class PartProductionPlan(Document):
@@ -71,10 +73,10 @@ class PartProductionPlan(Document):
         )
 
         if not master.capacityshift:
-            frappe.throw("Capacity/Shift not defined in Part Production Master")
+            frappe.throw("Production per Shift not defined in Part Production Master")
 
-        self.capacity_per_shift = master.capacityshift
-        self.bottleneck_stage = master.bottleneck_operation
+        self.capacity_per_shift = math.floor(master.capacityshift)
+        #self.bottleneck_stage = master.bottleneck_operation
 
     # 🔷 Required Qty
     def calculate_required_qty(self):
@@ -87,9 +89,7 @@ class PartProductionPlan(Document):
     def calculate_required_shifts(self):
 
         if self.capacity_per_shift:
-            self.required_shifts = round(
-                self.required_qty / self.capacity_per_shift, 2
-            )
+            self.required_shifts = math.ceil(self.required_qty / self.capacity_per_shift)
         else:
             self.required_shifts = 0
 
@@ -105,8 +105,8 @@ class PartProductionPlan(Document):
 
         shifts = frappe.get_all(
             "Shift Configuration",
-            fields=["name"],
-            order_by="name"
+            fields=["name", "sequence"],
+            order_by="sequence"
         )
 
         if not shifts:
@@ -122,7 +122,7 @@ class PartProductionPlan(Document):
 
             self.append("part_production_plan_shift_detail", {
                 "shift": shift.name,
-                "planned_qty": round(qty, 2)
+                "planned_qty": int(math.floor(qty))
             })
 
             remaining_qty -= qty

@@ -7,25 +7,37 @@
  "engine": "InnoDB",
  "field_order": [
   "shift_name",
-  "working_hours"
+  "working_hours",
+  "sequence"
  ],
  "fields": [
   {
    "fieldname": "shift_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Shift Name",
+   "reqd": 1,
    "unique": 1
   },
   {
    "fieldname": "working_hours",
    "fieldtype": "Float",
-   "label": "Working Hours"
+   "in_list_view": 1,
+   "label": "Working Hours",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sequence",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Sequence",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-12 15:38:51.704442",
+ "modified": "2026-04-12 21:39:09.253863",
  "modified_by": "Administrator",
  "module": "Production Planning",
  "name": "Shift Configuration",

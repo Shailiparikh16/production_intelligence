@@ -36,43 +36,47 @@ function calculate_outputs(frm) {
     // 🔷 Get shift hours dynamically (fallback = 8)
     let working_hours = frm.doc.working_hours || 7.5;
     let available_minutes = working_hours * 60;
+    let total_cycle_time = 0;
 
-    let min_output = null;
-    let bottleneck = null;
 
     (frm.doc.operations || []).forEach(row => {
 
         row.output = 0;
-        row.is_bottleneck = 0;
+        // row.is_bottleneck = 0;
 
         if (row.cycle_time && row.cycle_time > 0) {
 
-            let efficiency = (row.efficiency || 100) / 100;
+            let raw_output = available_minutes / row.cycle_time;
+            row.output = Math.floor(raw_output);
+            total_cycle_time += row.cycle_time;
 
-            let effective_minutes = available_minutes * efficiency;
-
-            let raw_output = effective_minutes / row.cycle_time;
-
-            row.output = parseFloat(raw_output.toFixed(2));
-
-            // 🔥 Compare using RAW (not rounded)
-            if (min_output === null || raw_output < min_output) {
-                min_output = raw_output;
-                bottleneck = row.operation;
-            }
         }
     });
 
     // 🔥 Mark bottleneck
-    (frm.doc.operations || []).forEach(row => {
-        if (row.operation === bottleneck) {
-            row.is_bottleneck = 1;
-        }
-    });
+    // (frm.doc.operations || []).forEach(row => {
+    //     if (row.operation === bottleneck) {
+    //         row.is_bottleneck = 1;
+    //     }
+    // });
 
     // 🔥 Set parent fields
-    frm.set_value("capacityshift", min_output ? parseFloat(min_output.toFixed(2)) : 0);
-    frm.set_value("bottleneck_operation", bottleneck || "");
+  let outputs = [];
+
+(frm.doc.operations || []).forEach(row => {
+    if (row.output && row.output > 0) {
+        outputs.push(row.output);
+    }
+});
+
+let capacity = 0;
+
+if (outputs.length > 0) {
+    capacity = Math.min(...outputs);
+}
+
+    frm.set_value("capacityshift", capacity);
+
     frm.set_value("total_operations", (frm.doc.operations || []).length);
 
     frm.refresh_field("operations");

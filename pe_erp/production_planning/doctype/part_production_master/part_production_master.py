@@ -1,5 +1,6 @@
 import frappe
 from frappe.model.document import Document
+import math
 
 
 class PartProductionMaster(Document):
@@ -22,8 +23,8 @@ class PartProductionMaster(Document):
 
         available_minutes = 7.5 * 60  # 450
 
-        min_output = None
-        bottleneck_op = None
+        #min_output = None
+        #bottleneck_op = None
         total_time = 0  # 🔥 NEW
 
         for row in self.operations:
@@ -39,23 +40,23 @@ class PartProductionMaster(Document):
 
             # 🔥 Output calculation (NO efficiency)
             output = available_minutes / row.cycle_time
-            row.output = round(output, 2)
+            row.output = math.floor(output)
 
-            if min_output is None or output < min_output:
-                min_output = output
-                bottleneck_op = row.operation
+            #if min_output is None or output < min_output:
+            #    min_output = output
+            #    #bottleneck_op = row.operation
 
         # 🔥 Assign parent values
-        self.capacityshift = round(min_output, 2) if min_output else 0
-        self.bottleneck_operation = bottleneck_op
+        self.capacityshift = math.floor(min([row.output for row in self.operations])) if total_time else 0
+        #self.bottleneck_operation = bottleneck_op  
 
         # 🔥 Mark bottleneck
-        for row in self.operations:
-            if row.operation == bottleneck_op:
-                row.is_bottleneck = 1
+        #for row in self.operations:
+        #    if row.operation == bottleneck_op:
+        #        row.is_bottleneck = 1
 
         # 🔥 Total operations
         self.total_operations = len(self.operations)
 
         # 🔥 Total Time To Produce
-        self.total_time_to_produce = round(total_time, 2)
+        self.total_time_to_produce = math.floor(total_time)
